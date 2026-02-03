@@ -6,6 +6,8 @@
   <title>소빵컴퍼니 | 소퍼니 (sofunny.kr)</title>
   <meta name="description" content="소빵컴퍼니(소퍼니)는 크롬 익스텐션, 웹서비스, 모바일 앱을 만드는 메이커 팀입니다. 작고 유용한 도구로 당신의 흐름을 지킵니다." />
   <meta name="theme-color" content="#0f0b14" />
+  <link rel="icon" href="images/logo.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="images/logo.png" type="image/png" sizes="192x192" />
   <style>
     /* =======================================================
        Dark & Pink & Violet (다크 + 다꾸 느낌)
@@ -236,7 +238,6 @@
       z-index:5;
       display:inline-flex;
       align-items:center;
-      gap:5px;
       padding:5px 8px;
       border-radius: 999px;
       background: rgba(17,17,24,.92);
@@ -250,8 +251,6 @@
       position:absolute;
       inset:4px;
       border-radius: 999px;
-      border: 2px dotted rgba(167,139,250,.3);
-      opacity:.6;
       pointer-events:none;
     }
     .badge .emo{font-size:16px; line-height:1}
@@ -266,7 +265,7 @@
       margin-bottom:18px;
     }
     .section-title h2{margin:0; font-size: 22px; letter-spacing:-.6px}
-    .section-title p{margin:0; color:var(--muted); font-weight:700; font-size: 13px}
+    .section-title p{margin:0; color:var(--brand); font-weight:700; font-size: 13px}
     .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px}
     .col-4{grid-column: span 4}
     .col-6{grid-column: span 6}
@@ -296,14 +295,14 @@
     .products .product{
       padding:14px;
       display:flex; flex-direction:column; gap:10px;
-      min-height: 180px;
+      min-height: 150px;
       position:relative;
     }
     .product .head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
     .product h3{margin:0; font-size:16px; letter-spacing:-.4px}
     .product p{margin:0; color:var(--muted); font-size: 13px}
     .product .actions{margin-top:auto; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-    .product .actions .badge{ position:static; left:auto; top:auto; margin-left:auto; }
+    .product .actions .badge{position:absolute; right: -7px; top: 2px;left:auto;}
     .muted{color:var(--muted)}
 
     .about-box{
@@ -494,7 +493,7 @@
       top: 50%;
       transform: translate(-50%, -50%) scale(0.95);
       width: 50vw;
-      height: 60vh;
+      height: 65vh;
       min-width: 300px;
       min-height: 380px;
       max-width: 96vw;
@@ -526,11 +525,13 @@
       transition: border-color .15s ease;
     }
     .chat-panel input:focus, .chat-panel textarea:focus{ border-color: rgba(232,160,176,.5); }
-    .chat-panel textarea{ min-height: 100px; resize: vertical; }
+    .chat-panel textarea{ min-height: 300px; resize: vertical; }
     .chat-panel .chat-actions{ display: flex; gap: 10px; margin-top: 8px; }
     .chat-panel .chat-actions .btn{ flex: 1; }
 
     .toast{
+      width: max-content;
+      max-width: 80%;
       position: fixed;
       left: 50%;
       bottom: 18px;
@@ -679,7 +680,6 @@
           <h2>제품</h2>
           <p>여기에 실제 제품 링크/스크린샷을 연결하면 바로 런칭 페이지가 됩니다.</p>
         </div>
-        <a class="btn" href="#contact">제품/개발 문의</a>
       </div>
       <div class="grid">
         <article class="card product col-4 reveal">
@@ -807,7 +807,6 @@
       <div class="section-title">
         <div>
           <h2>소개</h2>
-          <p>“소연의 별명 ‘소빵’에서 시작된 메이커 팀.”</p>
         </div>
       </div>
       <div class="card about-box reveal">
@@ -852,7 +851,6 @@
       <div class="section-title">
         <div>
           <h2>MISSION & VISION</h2>
-          <p>미션 / 비전</p>
         </div>
       </div>
       <div class="card mission-vision-box reveal">
@@ -909,8 +907,8 @@
     <footer>
       <div class="wrap footer-inner">
         <div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px">
-            <span class="logo" aria-hidden="true" style="width:28px;height:28px;border-radius:12px"></span>
+          <div style="display:flex; align-items:center; margin-bottom:8px">
+            <span class="logo" aria-hidden="true" style="width:40px;height:40px;border-radius:12px"></span>
             <b>소빵컴퍼니</b>
           </div>
           <div class="muted">© <span id="year"></span> SOBBANG COMPANY. All rights reserved.</div>
@@ -934,22 +932,17 @@
   <div class="chat-overlay" id="chatOverlay" aria-hidden="true"></div>
   <div class="chat-panel" id="chatPanel" role="dialog" aria-labelledby="chatPanelTitle" aria-modal="true">
       <h4 id="chatPanelTitle">문의 보내기</h4>
-      <p class="muted" style="margin:0 0 12px; font-size:12px;">작성 후 제출하면 메일 앱이 열립니다.</p>
+      <p class="muted" style="margin:0 0 12px; font-size:12px;">작성 후 복사하여 <strong>help@sofunny.kr</strong> 로 보내주세요.</p>
       <form id="chatForm">
-        <label for="chatProduct">제품</label>
-        <input id="chatProduct" name="product" placeholder="예) 크롬 익스텐션 MVP" />
-        <label for="chatSchedule">일정</label>
-        <input id="chatSchedule" name="schedule" placeholder="예) 2주 내" />
-        <label for="chatBudget">예산</label>
-        <input id="chatBudget" name="budget" placeholder="예) 협의" />
-        <label for="chatRef">레퍼런스</label>
-        <input id="chatRef" name="reference" placeholder="예) 링크 또는 참고 사항" />
-        <label for="chatEtc">기타</label>
-        <textarea id="chatEtc" name="etc" placeholder="추가 내용"></textarea>
+        <textarea id="chatBody" name="body" rows="24">제품: 예) 크롬 익스텐션 MVP
+일정: 예) 2주 내
+예산: 예) 협의
+레퍼런스: 예) 링크 또는 참고 사항
+기타: (추가 내용)</textarea>
       </form>
       <div class="chat-actions">
         <button type="button" class="btn" id="chatCloseBtn">닫기</button>
-        <button type="submit" class="btn primary"><span class="dot" aria-hidden="true"></span>전송</button>
+        <button type="submit" form="chatForm" class="btn primary"><span class="dot" aria-hidden="true"></span>본문 복사</button>
       </div>
   </div>
   <div class="chat-float" aria-label="문의 챗봇">
@@ -967,7 +960,7 @@
       toastText.textContent = msg;
       toastEl.classList.add("show");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(()=>toastEl.classList.remove("show"), 1800);
+      toastTimer = setTimeout(()=>toastEl.classList.remove("show"), 2000);
     }
     async function copy(text){
       try{
@@ -1006,7 +999,7 @@
       }
     })();
     (function(){
-      const EMAIL = "kox0817@gmail.com";
+      const INQUIRY_EMAIL = "help@sofunny.kr";
       const overlay = document.getElementById("chatOverlay");
       const panel = document.getElementById("chatPanel");
       const floatBtn = document.getElementById("chatFloatBtn");
@@ -1028,18 +1021,24 @@
       closeBtn.addEventListener("click", closePanel);
       form.addEventListener("submit", function(e){
         e.preventDefault();
-        const product = (document.getElementById("chatProduct")?.value || "").trim();
-        const schedule = (document.getElementById("chatSchedule")?.value || "").trim();
-        const budget = (document.getElementById("chatBudget")?.value || "").trim();
-        const reference = (document.getElementById("chatRef")?.value || "").trim();
-        const etc = (document.getElementById("chatEtc")?.value || "").trim();
-        const lines = ["[소빵컴퍼니 문의]", "", "- 제품: " + (product || "(미입력)"), "- 일정: " + (schedule || "(미입력)"), "- 예산: " + (budget || "(미입력)"), "- 레퍼런스: " + (reference || "(미입력)"), "- 기타: " + (etc || "(미입력)"), "", "— sofunny.kr"];
-        const body = encodeURIComponent(lines.join("\n"));
-        const subject = encodeURIComponent("문의: " + (product || "제품/개발 문의"));
-        const mailto = "mailto:" + EMAIL + "?subject=" + subject + "&body=" + body;
-        window.location.href = mailto;
-        toast("메일 앱이 열립니다.");
-        closePanel();
+        const body = (document.getElementById("chatBody")?.value || "").trim();
+        const bodyText = body
+          ? "[소빵컴퍼니 문의]\n\n" + body + "\n\n— sofunny.kr"
+          : "[소빵컴퍼니 문의]\n\n— sofunny.kr";
+        (async function(){
+          try {
+            await navigator.clipboard.writeText(bodyText);
+          } catch (err) {
+            const ta = document.createElement("textarea");
+            ta.value = bodyText;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+          }
+          toast("본문을 복사했습니다. " + INQUIRY_EMAIL + " 로 보내주세요.");
+          closePanel();
+        })();
       });
     })();
     const reveals = Array.from(document.querySelectorAll(".reveal"));
