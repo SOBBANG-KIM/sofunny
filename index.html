@@ -57,8 +57,7 @@
     }
 
     a{color:inherit; text-decoration:none}
-    /* .wrap{max-width:var(--max); margin:0 auto; padding:0 20px} */
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 4px}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
 
     .nav{
       position:sticky; top:0; z-index:50;
@@ -71,17 +70,13 @@
       height:64px;
     }
     .brand{
-      display:flex; align-items:center; gap:12px;
+      display:flex; align-items:center;
       font-weight:800;
       letter-spacing:-.3px;
     }
     .logo{
-      width:34px; height:34px; border-radius:12px;
-      background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.22), transparent 60%),
-        linear-gradient(135deg, rgba(232,160,176,.95), rgba(167,139,250,.92));
-      box-shadow: 0 10px 30px rgba(167,139,250,.25);
-      border:1px solid rgba(255,255,255,.22);
+      width:64px; height:64px; border-radius:12px;
+      background: transparent url(images/logo.png) center/contain no-repeat;
     }
     .brand small{
       display:block; font-weight:600; color:var(--muted); letter-spacing:0;
@@ -94,8 +89,6 @@
     }
     .menu a{padding:8px 10px; border-radius:12px}
     .menu a:hover{background: rgba(255,255,255,.06); color:var(--text)}
-    .cta{display:flex; align-items:center; gap:10px}
-
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:10px 14px;
@@ -305,12 +298,12 @@
       display:flex; flex-direction:column; gap:10px;
       min-height: 180px;
       position:relative;
-      padding-top: 52px;
     }
     .product .head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
     .product h3{margin:0; font-size:16px; letter-spacing:-.4px}
     .product p{margin:0; color:var(--muted); font-size: 13px}
-    .product .actions{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
+    .product .actions{margin-top:auto; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+    .product .actions .badge{ position:static; left:auto; top:auto; margin-left:auto; }
     .muted{color:var(--muted)}
 
     .about-box{
@@ -363,35 +356,7 @@
     .about-prose-wrap .toggle-btn:hover{ background: rgba(232,160,176,.12); border-color: rgba(232,160,176,.45); }
     .about-prose-wrap .toggle-btn span:last-child{ display:inline-block; transition: transform .25s ease; }
 
-    .portfolio-section{margin-top:28px}
-    .portfolio-section h3{margin:0 0 14px; font-size:18px; letter-spacing:-.4px; color:var(--muted); font-weight:800}
-    .portfolio-grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
-    .portfolio-card{
-      display:block;
-      padding:16px;
-      border-radius: var(--radius);
-      border: 2px dashed rgba(232,160,176,.25);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      color:inherit;
-      transition: transform .15s ease, border-color .15s ease, background .15s ease;
-      position:relative;
-    }
-    .portfolio-card:hover{
-      border-color: rgba(232,160,176,.45);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      transform: translateY(-2px);
-    }
-    .portfolio-card .icon{
-      width:36px; height:36px; border-radius:12px;
-      border: 2px dashed rgba(232,160,176,.25);
-      background: rgba(255,255,255,.06);
-      display:inline-flex; align-items:center; justify-content:center;
-      margin-bottom:12px; position:relative; z-index:1;
-    }
-    .portfolio-card .icon svg{opacity:.95}
-    .portfolio-card h4{margin:0 0 8px; font-size:16px; letter-spacing:-.3px; position:relative; z-index:1}
-    .portfolio-card p{margin:0; color:var(--muted); font-size:13px; position:relative; z-index:1}
-    .portfolio-card .arrow{position:absolute; top:20px; right:20px; color:var(--muted); font-size:14px; z-index:1}
+
     @media (max-width: 560px){ .portfolio-grid{grid-template-columns: 1fr} }
 
     .mission-vision-box{
@@ -454,7 +419,7 @@
 
     .contact{padding:18px}
 
-    form{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top: 10px}
+    form{display:grid; grid-template-columns: 20% 80%; gap:12px; margin-top: 10px}
     label{display:block; font-size: 12px; color: var(--muted); font-weight:800; margin: 2px 0 6px}
     input, textarea{
       width:100%;
@@ -480,6 +445,91 @@
       font-size: 13px;
     }
 
+    /* 챗봇 플로팅 + 이메일 폼 */
+    .chat-float{
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 90;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
+    }
+    .chat-float.hide-on-scroll{
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(120%);
+      pointer-events: none;
+    }
+    .chat-float-btn{
+      width: 100px;
+      height: 100px;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .2s ease;
+    }
+    .chat-float-btn:hover{ transform: scale(1.08); }
+    .chat-float-btn img{ width:100px; height:100px; display:block; object-fit:contain; }
+    .chat-overlay{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 88;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+    .chat-overlay.is-open{ opacity: 1; visibility: visible; pointer-events: auto; }
+    .chat-panel{
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      width: 50vw;
+      height: 60vh;
+      min-width: 300px;
+      min-height: 380px;
+      max-width: 96vw;
+      max-height: 90vh;
+      background: rgba(17,17,24,.98);
+      border: 2px dashed rgba(232,160,176,.35);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      overflow: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+      z-index: 92;
+    }
+    .chat-panel.is-open{ opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+    .chat-panel h4{ margin: 0 0 8px; font-size: 18px; letter-spacing: -.3px; }
+    .chat-panel label{ display: block; font-size: 12px; color: var(--muted); font-weight: 700; margin: 0 0 4px; }
+    .chat-panel input, .chat-panel textarea{
+      width: 100%;
+      border-radius: 12px;
+      border: 2px dashed rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      outline: none;
+      transition: border-color .15s ease;
+    }
+    .chat-panel input:focus, .chat-panel textarea:focus{ border-color: rgba(232,160,176,.5); }
+    .chat-panel textarea{ min-height: 100px; resize: vertical; }
+    .chat-panel .chat-actions{ display: flex; gap: 10px; margin-top: 8px; }
+    .chat-panel .chat-actions .btn{ flex: 1; }
+
     .toast{
       position: fixed;
       left: 50%;
@@ -501,7 +551,7 @@
     .toast.show{opacity:1; transform: translateX(-50%) translateY(0)}
 
     footer{
-      padding: 26px 0 44px;
+      padding: 80px 0 80px;
       border-top: 2px dashed rgba(232,160,176,.25);
       color: var(--muted);
       font-weight:700;
@@ -538,8 +588,7 @@
       form{grid-template-columns: 1fr}
       textarea, .form-actions{grid-column: span 1}
       .hero-left{padding:16px}
-      .product{padding-top: 48px}
-      .badge{left:14px; top:10px;}
+      .product{padding-top: 14px}
     }
     @media (max-width: 360px){
       body .btn{font-size: 12px;}
@@ -556,16 +605,12 @@
         <span class="logo" aria-hidden="true"></span>
         <span class="grad">SoFunny</span>
       </a>
-      <nav class="menu" aria-label="메뉴">
+      <nav class="menu grad" aria-label="메뉴">
         <a href="#products">제품</a>
         <a href="#capabilities">서비스</a>
         <a href="#about">소개</a>
         <a href="#contact">문의</a>
       </nav>
-      <div class="cta">
-        <a class="btn" href="#contact" title="제휴/개발 문의">문의하기</a>
-        <a class="btn primary" href="#products" title="제품 보기"><span class="dot" aria-hidden="true"></span>제품 보기</a>
-      </div>
     </div>
   </header>
 
@@ -638,81 +683,75 @@
       </div>
       <div class="grid">
         <article class="card product col-4 reveal">
-          <div class="badge hot" aria-label="HOT 배지"><span class="emo">🍞</span><span class="txt">HOT</span></div>
           <div class="head">
             <div>
               <h3>Tabs Sort Manager</h3>
               <p>도메인별 자동 정렬, 고정, 메모, 그룹, 검색</p>
             </div>
-            <span class="tag chrome">Chrome</span>
           </div>
           <div class="actions">
             <a class="btn" href="https://chromewebstore.google.com/detail/tabs-sort-manager/mjifbekfaplegjedmjcecgjdljnkfeaf?authuser=0&hl=ko" target="_blank" rel="noopener noreferrer">Chrome Web Store</a>
+            <div class="badge hot" aria-label="HOT 배지"><span class="emo">🍞</span><span class="txt">HOT</span></div>
           </div>
         </article>
         <article class="card product col-4 reveal">
-          <div class="badge hot" aria-label="HOT 배지"><span class="emo">🍞</span><span class="txt">HOT</span></div>
           <div class="head">
             <div>
               <h3>Today Snippet</h3>
               <p>자주 쓰는 문구 저장 · 변수 치환 · 핀 고정 · 테마</p>
             </div>
-            <span class="tag chrome">Chrome</span>
           </div>
           <div class="actions">
             <a class="btn" href="https://chromewebstore.google.com/detail/today-snippet/pghgbaanaojcmonohgnokfnjiidijfgn?authuser=0&hl=ko" target="_blank" rel="noopener noreferrer">Chrome Web Store</a>
+            <div class="badge hot" aria-label="HOT 배지"><span class="emo">🍞</span><span class="txt">HOT</span></div>
           </div>
         </article>
         <article class="card product col-4 reveal">
-          <div class="badge beta" aria-label="BETA 배지"><span class="emo">🍞</span><span class="txt">BETA</span></div>
           <div class="head">
             <div>
               <h3>Custom Web/App</h3>
               <p>웹서비스/모바일 앱 MVP 제작 및 개선 파트너</p>
             </div>
-            <span class="tag web">Web</span>
           </div>
           <div class="actions">
             <a class="btn primary" href="#contact"><span class="dot" aria-hidden="true"></span>의뢰/제휴 문의</a>
+            <div class="badge beta" aria-label="BETA 배지"><span class="emo">🍞</span><span class="txt">BETA</span></div>
           </div>
         </article>
         <article class="card product col-4 reveal">
-          <div class="badge new" aria-label="NEW 배지"><span class="emo">🍞</span><span class="txt">NEW</span></div>
           <div class="head">
             <div>
               <h3>Mac Screenshot Bug Resolver</h3>
               <p>macOS 전체 화면/영역 캡처 · 지정 경로 저장 · 버그 리포트/QA용</p>
             </div>
-            <span class="tag chrome">Chrome</span>
           </div>
           <div class="actions">
             <a class="btn" href="https://chromewebstore.google.com/detail/mac-screenshot-bug-resolv/aaboljmpdjkhigeljaflihcniechinjg?authuser=0&hl=ko" target="_blank" rel="noopener noreferrer">Chrome Web Store</a>
+            <div class="badge new" aria-label="NEW 배지"><span class="emo">🍞</span><span class="txt">NEW</span></div>
           </div>
         </article>
         <article class="card product col-4 reveal">
-          <div class="badge new" aria-label="NEW 배지"><span class="emo">🍞</span><span class="txt">NEW</span></div>
           <div class="head">
             <div>
               <h3>Make QR Code</h3>
               <p>URL 입력으로 QR 코드 생성·다운로드 · 크기·문구·파일명 설정</p>
             </div>
-            <span class="tag chrome">Chrome</span>
           </div>
           <div class="actions">
             <a class="btn" href="https://chromewebstore.google.com/detail/make-qr-code/golmnabbgbemcaikgekiggnegelkgbln?authuser=0&hl=ko" target="_blank" rel="noopener noreferrer">Chrome Web Store</a>
+            <div class="badge new" aria-label="NEW 배지"><span class="emo">🍞</span><span class="txt">NEW</span></div>
           </div>
         </article>
         <article class="card product col-4 reveal">
-          <div class="badge new" aria-label="NEW 배지"><span class="emo">🍞</span><span class="txt">NEW</span></div>
           <div class="head">
             <div>
               <h3>Office Jira Add</h3>
               <p>Jira 이슈 등록·Worklog 기록 · Google Calendar 연동</p>
             </div>
-            <span class="tag chrome">Chrome</span>
           </div>
           <div class="actions">
             <a class="btn" href="https://chromewebstore.google.com/detail/mate-jira-quick-add/idjkbpnhdchcilkamjmkbcccmfifhghj?authuser=0&hl=ko" target="_blank" rel="noopener noreferrer">Chrome Web Store</a>
+            <div class="badge new" aria-label="NEW 배지"><span class="emo">🍞</span><span class="txt">NEW</span></div>
           </div>
         </article>
       </div>
@@ -807,28 +846,6 @@
           <span aria-hidden="true">▼</span>
         </button>
       </div>
-
-      <div class="portfolio-section reveal">
-        <h3>개발자 포트폴리오 (예정)</h3>
-        <div class="portfolio-grid">
-          <a class="card portfolio-card" href="#" onclick="return false;" title="웹 링크 연결 예정">
-            <span class="arrow" aria-hidden="true">→</span>
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8a4 4 0 110 8 4 4 0 010-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <h4>포트폴리오 1</h4>
-            <p>프로젝트·경력 요약 등 링크 연결 예정</p>
-          </a>
-          <a class="card portfolio-card" href="#" onclick="return false;" title="웹 링크 연결 예정">
-            <span class="arrow" aria-hidden="true">→</span>
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8a4 4 0 110 8 4 4 0 010-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <h4>포트폴리오 2</h4>
-            <p>프로젝트·경력 요약 등 링크 연결 예정</p>
-          </a>
-        </div>
-      </div>
     </section>
 
     <section id="mission-vision">
@@ -887,12 +904,6 @@
           <p>아래 챗봇을 통해 문의해 주세요.</p>
         </div>
       </div>
-      <div class="card contact reveal">
-        <div class="mini contact-chatbot-notice">
-          <h3>제휴/개발 문의</h3>
-          <p class="muted">문의는 <strong>아래 챗봇</strong>을 통해 제출해 주세요. 원하는 제품/일정/예산/레퍼런스를 적어주시면 답변하기 쉬워요.</p>
-        </div>
-      </div>
     </section>
 
     <footer>
@@ -918,6 +929,33 @@
   <div class="toast" id="toast" role="status" aria-live="polite">
     <span style="width:10px;height:10px;border-radius:999px;background:var(--ok);box-shadow:0 0 0 4px rgba(34,197,94,.14)"></span>
     <span id="toastText">완료!</span>
+  </div>
+
+  <div class="chat-overlay" id="chatOverlay" aria-hidden="true"></div>
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-labelledby="chatPanelTitle" aria-modal="true">
+      <h4 id="chatPanelTitle">문의 보내기</h4>
+      <p class="muted" style="margin:0 0 12px; font-size:12px;">작성 후 제출하면 메일 앱이 열립니다.</p>
+      <form id="chatForm">
+        <label for="chatProduct">제품</label>
+        <input id="chatProduct" name="product" placeholder="예) 크롬 익스텐션 MVP" />
+        <label for="chatSchedule">일정</label>
+        <input id="chatSchedule" name="schedule" placeholder="예) 2주 내" />
+        <label for="chatBudget">예산</label>
+        <input id="chatBudget" name="budget" placeholder="예) 협의" />
+        <label for="chatRef">레퍼런스</label>
+        <input id="chatRef" name="reference" placeholder="예) 링크 또는 참고 사항" />
+        <label for="chatEtc">기타</label>
+        <textarea id="chatEtc" name="etc" placeholder="추가 내용"></textarea>
+      </form>
+      <div class="chat-actions">
+        <button type="button" class="btn" id="chatCloseBtn">닫기</button>
+        <button type="submit" class="btn primary"><span class="dot" aria-hidden="true"></span>전송</button>
+      </div>
+  </div>
+  <div class="chat-float" aria-label="문의 챗봇">
+    <button type="button" class="chat-float-btn" id="chatFloatBtn" aria-expanded="false" aria-controls="chatPanel" title="문의하기">
+      <img src="images/chatbot.png" alt="문의하기" width="100" height="100" />
+    </button>
   </div>
 
   <script>
@@ -946,6 +984,64 @@
       }
     }
     document.getElementById("copyDomainBtn").addEventListener("click", ()=>copy("sofunny.kr"));
+    (function(){
+      const chatFloat = document.querySelector(".chat-float");
+      if(chatFloat){
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        const SCROLL_THRESHOLD = 60;
+        function updateChatVisibility(){
+          const y = window.scrollY;
+          const atBottom = y + window.innerHeight >= document.documentElement.scrollHeight - 50;
+          const scrollingDown = y > lastScrollY;
+          if(atBottom) chatFloat.classList.remove("hide-on-scroll");
+          else if(y > SCROLL_THRESHOLD && scrollingDown) chatFloat.classList.add("hide-on-scroll");
+          else chatFloat.classList.remove("hide-on-scroll");
+          lastScrollY = y;
+          ticking = false;
+        }
+        window.addEventListener("scroll", ()=>{
+          if(!ticking){ requestAnimationFrame(updateChatVisibility); ticking = true; }
+        }, { passive: true });
+      }
+    })();
+    (function(){
+      const EMAIL = "kox0817@gmail.com";
+      const overlay = document.getElementById("chatOverlay");
+      const panel = document.getElementById("chatPanel");
+      const floatBtn = document.getElementById("chatFloatBtn");
+      const closeBtn = document.getElementById("chatCloseBtn");
+      const form = document.getElementById("chatForm");
+      if(!panel || !floatBtn || !form) return;
+      function openPanel(){
+        if(overlay){ overlay.classList.add("is-open"); overlay.setAttribute("aria-hidden","false"); }
+        panel.classList.add("is-open");
+        floatBtn.setAttribute("aria-expanded","true");
+      }
+      function closePanel(){
+        if(overlay){ overlay.classList.remove("is-open"); overlay.setAttribute("aria-hidden","true"); }
+        panel.classList.remove("is-open");
+        floatBtn.setAttribute("aria-expanded","false");
+      }
+      floatBtn.addEventListener("click", ()=>{ panel.classList.contains("is-open") ? closePanel() : openPanel(); });
+      if(overlay) overlay.addEventListener("click", closePanel);
+      closeBtn.addEventListener("click", closePanel);
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        const product = (document.getElementById("chatProduct")?.value || "").trim();
+        const schedule = (document.getElementById("chatSchedule")?.value || "").trim();
+        const budget = (document.getElementById("chatBudget")?.value || "").trim();
+        const reference = (document.getElementById("chatRef")?.value || "").trim();
+        const etc = (document.getElementById("chatEtc")?.value || "").trim();
+        const lines = ["[소빵컴퍼니 문의]", "", "- 제품: " + (product || "(미입력)"), "- 일정: " + (schedule || "(미입력)"), "- 예산: " + (budget || "(미입력)"), "- 레퍼런스: " + (reference || "(미입력)"), "- 기타: " + (etc || "(미입력)"), "", "— sofunny.kr"];
+        const body = encodeURIComponent(lines.join("\n"));
+        const subject = encodeURIComponent("문의: " + (product || "제품/개발 문의"));
+        const mailto = "mailto:" + EMAIL + "?subject=" + subject + "&body=" + body;
+        window.location.href = mailto;
+        toast("메일 앱이 열립니다.");
+        closePanel();
+      });
+    })();
     const reveals = Array.from(document.querySelectorAll(".reveal"));
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(ent=>{ if(ent.isIntersecting) ent.target.classList.add("on"); });
