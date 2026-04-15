@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoFunny - I'm ON (아임온)</title>
+  <meta name="description" content="1인가구를 위한 안심 체크온 서비스. 매일 한 번의 체크온으로 소중한 사람에게 안부를 전하세요." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:           #0b1614;
+      --bg-nav:       rgba(11, 22, 20, 0.88);
+      --bg-card:      #131f1d;
+      --bg-card2:     #1a2b28;
+      --bg-card3:     #1f3330;
+      --teal:         #2de0c4;
+      --teal-dim:     #1aab95;
+      --teal-glow:    rgba(45, 224, 196, 0.25);
+      --teal-glow2:   rgba(45, 224, 196, 0.10);
+      --white:        #ffffff;
+      --text:         rgba(255,255,255,0.95);
+      --text-muted:   rgba(255,255,255,0.5);
+      --text-faint:   rgba(255,255,255,0.28);
+      --border:       rgba(45, 224, 196, 0.12);
+      --border-card:  rgba(255,255,255,0.06);
+      --font: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--bg-nav);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo-text {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      text-shadow: 0 0 20px var(--teal-glow);
+    }
+
+    .nav-logo-img {
+      height: 40px;
+      width: 40px;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    .nav-cta {
+      background: transparent !important;
+      color: var(--teal) !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      border: 1.5px solid var(--teal) !important;
+      transition: all 0.2s !important;
+    }
+    .nav-cta:hover {
+      background: var(--teal-glow) !important;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -160px; right: -160px;
+      width: 640px; height: 640px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,224,196,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,224,196,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(45,224,196,0.08);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--teal);
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--teal);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+    .hero-title .highlight {
+      color: var(--teal);
+      text-shadow: 0 0 30px var(--teal-glow);
+    }
+
+    .hero-tagline {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--teal);
+      color: var(--bg);
+      padding: 0.85rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 24px var(--teal-glow);
+    }
+    .btn-primary:hover {
+      background: #3ef0d6;
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(45,224,196,0.5);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 0.85rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1.5px solid var(--border-card);
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    /* PHONE MOCKUP */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      perspective: 1000px;
+    }
+
+    .phone-wrap.main { z-index: 2; position: relative; }
+    .phone-wrap.side {
+      transform: rotateY(-8deg) translateX(-10px) scale(0.88);
+      opacity: 0.6;
+      z-index: 1;
+      filter: brightness(0.7);
+    }
+
+    .phone-frame {
+      width: 230px;
+      border-radius: 44px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1.5px rgba(45,224,196,0.3),
+        0 0 40px rgba(45,224,196,0.15),
+        0 24px 60px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .phone-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .phone-glow-ring {
+      position: absolute;
+      inset: -2px;
+      border-radius: 46px;
+      border: 1.5px solid var(--teal);
+      opacity: 0.4;
+      pointer-events: none;
+      animation: glow-ring 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-ring {
+      0%,100% { box-shadow: 0 0 16px var(--teal-glow); opacity: 0.4; }
+      50%      { box-shadow: 0 0 32px rgba(45,224,196,0.5); opacity: 0.7; }
+    }
+
+    /* SECTION COMMON */
+    section { padding: 6rem 2rem; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.8;
+    }
+
+    /* HOW IT WORKS */
+    .how-section { background: var(--bg-card); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .step-card {
+      background: var(--bg-card2);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .step-card:hover {
+      border-color: var(--border);
+      box-shadow: 0 8px 32px rgba(45,224,196,0.08);
+      transform: translateY(-4px);
+    }
+
+    .step-number {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(45,224,196,0.12);
+      border: 1.5px solid var(--teal-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+    }
+
+    .step-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* SCREENS SHOWCASE */
+    .screens-section { background: var(--bg); }
+
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+      align-items: end;
+    }
+
+    .screen-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .screen-item .phone-frame {
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .screen-caption { text-align: center; }
+    .screen-caption h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .screen-caption p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* FEATURES */
+    .features-section { background: var(--bg-card); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .feature-card {
+      background: var(--bg-card2);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      border-color: var(--border);
+      box-shadow: 0 8px 32px rgba(45,224,196,0.07);
+    }
+
+    .feature-card.featured {
+      grid-column: span 2;
+      background: var(--bg-card3);
+      border-color: var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .feature-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .feature-trial-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--teal);
+      background: rgba(45, 224, 196, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.25rem 0.8rem;
+    }
+
+    /* trust meter */
+    .trust-meter {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-card);
+    }
+
+    .trust-meter-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .trust-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .trust-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .trust-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--teal-dim), var(--teal));
+      box-shadow: 0 0 8px var(--teal-glow2);
+    }
+
+    .trust-score-num {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--teal);
+      width: 34px;
+      text-align: right;
+    }
+
+    /* TARGETS */
+    .targets-section { background: var(--bg); }
+
+    .targets-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .target-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .target-card:hover {
+      border-color: var(--border);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(45,224,196,0.08);
+    }
+
+    .target-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .target-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* PRICING */
+    .pricing-section { background: var(--bg-card); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      max-width: 700px;
+    }
+
+    .pricing-card {
+      background: var(--bg-card2);
+      border: 1.5px solid var(--border-card);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .pricing-card.premium {
+      background: var(--bg-card3);
+      border-color: var(--teal-dim);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 32px rgba(45,224,196,0.1);
+    }
+
+    .pricing-card.premium::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--bg);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.08em;
+    }
+
+    .pricing-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .pricing-price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0.75rem 0;
+    }
+    .pricing-price span {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .pricing-trial {
+      font-size: 0.82rem;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-features { list-style: none; }
+    .pricing-features li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding: 0.45rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-card);
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+
+    .check-icon {
+      color: var(--teal);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      font-style: normal;
+    }
+
+    /* STATS */
+    .stats-section {
+      background: linear-gradient(160deg, #0b1614 0%, #0d1e1b 50%, #0b1614 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(45,224,196,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-num {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-shadow: 0 0 24px var(--teal-glow);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--bg-card);
+      text-align: center;
+    }
+    .cta-section .section-title { max-width: 600px; margin: 0 auto 1rem; }
+    .cta-section .section-desc { margin: 0 auto 2.5rem; text-align: center; }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: var(--bg-card2);
+      border: 1.5px solid var(--border);
+      color: var(--white);
+      padding: 0.8rem 1.6rem;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .store-badge:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: rgba(45,224,196,0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(45,224,196,0.1);
+    }
+
+    .store-badge-text small {
+      display: block;
+      font-size: 0.7rem;
+      opacity: 0.55;
+      font-weight: 400;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #080f0e;
+      color: var(--text-muted);
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border-card);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 16px var(--teal-glow);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      color: var(--text-faint);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--teal); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+      .hero-actions { justify-content: center; }
+      .hero-visual { order: -1; }
+      .phone-wrap.side { display: none; }
+      .phone-frame { width: 200px; }
+
+      .steps-grid,
+      .targets-grid { grid-template-columns: 1fr; }
+
+      .screens-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card.featured {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; flex-wrap: wrap; gap: 1rem; }
+
+      section { padding: 4rem 1.25rem; }
+    }
+
+    /* FADE IN */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim { animation: fadeInUp 0.65s ease both; }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.22s; }
+    .d3 { animation-delay: 0.34s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="web_logo.png" alt="I'm ON 아임온" class="nav-logo-img" />
+      <span class="nav-logo-text">IMON</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#screens">화면</a></li>
+      <li><a href="#how">사용법</a></li>
+      <li><a href="#features">기능</a></li>
+      <li><a href="#download" class="nav-cta">앱 다운로드</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge anim">
+          <span class="badge-dot"></span>
+          1인가구 안심 체크온 서비스
+        </div>
+        <h1 class="hero-title anim d1">
+          하루 한 번 체크온<br />
+          <span class="highlight">관계의 신뢰를 쌓다.</span>
+        </h1>
+        <p class="hero-tagline anim d2">
+          NO 연락 &nbsp;&middot;&nbsp; NO 부담 &nbsp;&middot;&nbsp; JUST 체크온
+        </p>
+        <p class="hero-sub anim d2">
+          오늘도 원터치 안심 체크온.<br />
+          매일 연락하지 않아도, 서로의 안심을 확인하는<br />
+          생활 밀착형 안전 서비스.
+        </p>
+        <div class="hero-actions anim d3">
+          <a href="#download" class="btn-primary">앱 다운로드</a>
+          <a href="#screens" class="btn-secondary">화면 보기 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="hero-visual anim d2">
+        <div class="phone-wrap side">
+          <div class="phone-frame">
+            <img src="screen-before.png" alt="체크온 대기 화면" />
+          </div>
+        </div>
+        <div class="phone-wrap main">
+          <div class="phone-frame">
+            <img src="screen-after.png" alt="체크온 완료 화면" />
+            <div class="phone-glow-ring"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENS SHOWCASE -->
+  <section class="screens-section" id="screens">
+    <div class="section-inner">
+      <p class="section-label">앱 화면</p>
+      <h2 class="section-title">직관적이고 아름다운<br />체크온 경험</h2>
+      <p class="section-desc">복잡한 메뉴 없이, 한 화면에서 오늘의 안부를 확인하세요.</p>
+
+      <div class="screens-grid">
+        <div class="screen-item">
+          <div class="phone-frame" style="box-shadow: 0 0 0 1.5px rgba(45,224,196,0.2), 0 20px 50px rgba(0,0,0,0.6);">
+            <img src="screen-before.png" alt="체크온 대기" />
+          </div>
+          <div class="screen-caption">
+            <h3>체크온 대기</h3>
+            <p>다음 체크온까지 남은 시간과<br />최근 안부 정보를 한눈에</p>
+          </div>
+        </div>
+
+        <div class="screen-item" style="transform: translateY(-20px);">
+          <div class="phone-frame">
+            <img src="screen-after.png" alt="체크온 완료" />
+            <div class="phone-glow-ring"></div>
+          </div>
+          <div class="screen-caption">
+            <h3>체크온 완료</h3>
+            <p>버튼 하나로 나 괜찮아요<br />수호천사에게 자동 알림 전송</p>
+          </div>
+        </div>
+
+        <div class="screen-item">
+          <div class="phone-frame" style="box-shadow: 0 0 0 1.5px rgba(45,224,196,0.2), 0 20px 50px rgba(0,0,0,0.6);">
+            <img src="screen-record.png" alt="체크온 기록" />
+          </div>
+          <div class="screen-caption">
+            <h3>체크온 기록</h3>
+            <p>캘린더로 보는 나의 체크온 히스토리<br />하트 아이콘으로 상태 표시</p>
+          </div>
+        </div>
+
+        <div class="screen-item">
+          <div class="phone-frame" style="box-shadow: 0 0 0 1.5px rgba(239,68,68,0.35), 0 20px 50px rgba(0,0,0,0.6);">
+            <img src="screen-miss.png" alt="미체크온 긴급 화면" />
+          </div>
+          <div class="screen-caption">
+            <h3>미체크온 긴급 알림</h3>
+            <p>2일 연속 미체크온 시<br />수호천사에게 긴급 SMS 자동 발송</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how">
+    <div class="section-inner">
+      <p class="section-label">사용법</p>
+      <h2 class="section-title">딱 3단계면 충분해요</h2>
+      <p class="section-desc">복잡한 설정 없이, 1분이면 첫 체크온을 시작할 수 있어요.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3 class="step-title">앱 설치 &amp; 가입</h3>
+          <p class="step-desc">휴대폰 번호 하나로 간편하게 가입하세요. OTP 인증으로 30초 안에 가입 완료.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3 class="step-title">수호천사 등록</h3>
+          <p class="step-desc">부모님, 친구, 파트너를 수호천사로 등록하세요. 미체크온 시 자동으로 알림이 전송됩니다.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3 class="step-title">매일 체크온</h3>
+          <p class="step-desc">매일 정해진 시간, 버튼 하나만 누르면 끝. 연속 체크온 일수와 신뢰 점수가 쌓입니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="features">
+    <div class="section-inner">
+      <p class="section-label">주요 기능</p>
+      <h2 class="section-title">단순하지만,<br />생각보다 많은 걸 해줘요</h2>
+
+      <div class="features-grid">
+        <div class="feature-card featured">
+          <div>
+            <h3 class="feature-title">신뢰 그래프</h3>
+            <p class="feature-desc">
+              단순한 생존 확인을 넘어, 관계 기반의 신뢰 지표를 만들어요.<br /><br />
+              수호천사의 응답 속도와 응답률, 나의 연속 체크온 일수를 조합해 신뢰 점수를 산출해요. 관계가 쌓일수록 깊어지는 데이터를 확인해보세요.
+            </p>
+          </div>
+          <div class="trust-meter">
+            <div class="trust-meter-title">신뢰 점수 구성</div>
+            <div class="trust-item">
+              <span class="trust-label">응답률</span>
+              <div class="trust-bar-bg">
+                <div class="trust-bar-fill" style="width:85%"></div>
+              </div>
+              <span class="trust-score-num">85%</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-label">응답 속도</span>
+              <div class="trust-bar-bg">
+                <div class="trust-bar-fill" style="width:72%"></div>
+              </div>
+              <span class="trust-score-num">72%</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-label">연속 체크온</span>
+              <div class="trust-bar-bg">
+                <div class="trust-bar-fill" style="width:91%"></div>
+              </div>
+              <span class="trust-score-num">91%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="feature-title">스마트 알림 시스템</h3>
+          <p class="feature-desc">체크온 5분 전 사전 알림, 미체크온 리마인더, 2일 연속 미체크온 시 수호천사 긴급 SMS까지. 빠짐없이 챙겨드려요.</p>
+          <div class="feature-trial-badge">긴급상태 SMS 발송 &mdash; 14일 무료 체험 가능</div>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="feature-title">체크온 기록 캘린더</h3>
+          <p class="feature-desc">매일의 체크온 현황을 캘린더로 한눈에. 정시 · 지각 · 미체크를 하트 아이콘으로 직관적으로 표시해요.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3 class="feature-title">프라이버시 우선 설계</h3>
+          <p class="feature-desc">위치 정보 없음. 행동 추적 없음. 오직 체크온 했다 / 안 했다만. 최소 정보로 최대 안심을 드려요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARGETS -->
+  <section class="targets-section" id="targets">
+    <div class="section-inner">
+      <p class="section-label">이런 분들께 추천해요</p>
+      <h2 class="section-title">혼자이지만,<br />혼자가 아닌 삶</h2>
+
+      <div class="targets-grid">
+        <div class="target-card">
+          <h3 class="target-title">1인가구 직장인</h3>
+          <p class="target-desc">집에 혼자 있는 게 가끔 불안하신가요? 매일 체크온 하나로 내가 잘 있다는 걸 알릴 수 있어요.</p>
+        </div>
+        <div class="target-card">
+          <h3 class="target-title">타지 생활 자녀</h3>
+          <p class="target-desc">멀리 사는 부모님이 걱정되시나요? 체크온 완료 알림으로 매일 안부를 대신 전해드려요.</p>
+        </div>
+        <div class="target-card">
+          <h3 class="target-title">고령 1인가구</h3>
+          <p class="target-desc">복잡한 앱 없이 버튼 하나로 안부를 전할 수 있어요. 보호자와 실시간으로 연결돼요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / DOWNLOAD -->
+  <section class="cta-section" id="download">
+    <div class="section-inner">
+      <p class="section-label" style="text-align:center">지금 시작하기</p>
+      <h2 class="section-title">오늘부터 체크온 해보세요</h2>
+      <div class="cta-actions">
+        <a href="#" class="store-badge">
+          <div class="store-badge-text">
+            <small>App Store에서</small>
+            다운로드
+          </div>
+        </a>
+        <a href="#" class="store-badge">
+          <div class="store-badge-text">
+            <small>Google Play에서</small>
+            다운로드
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">IMON</div>
+      <ul class="footer-links">
+        <li><a href="#">서비스 소개</a></li>
+        <li><a href="https://thin-card-2dd.notion.site/IMON-33acac0d098e801abec8ed5a14f71c15?source=copy_link" target="_blank">개인정보처리방침</a></li>
+        <li><a href="#">이용약관</a></li>
+      </ul>
+      <p class="footer-copy">&#169; 2026 IMON. All rights reserved. &nbsp;|&nbsp; <a href="mailto:help@sofunny.kr" style="color: var(--text-faint); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--text-faint)'">help@sofunny.kr</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
