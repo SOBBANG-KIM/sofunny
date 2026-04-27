@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #0b1614;
+  --bg-card:     #131f1d;
+  --bg-card2:    #0f1a18;
+  --teal:        #2de0c4;
+  --teal-glow:   rgba(45,224,196,0.18);
+  --text:        rgba(255,255,255,0.92);
+  --text-muted:  rgba(255,255,255,0.55);
+  --text-faint:  rgba(255,255,255,0.30);
+  --border:      rgba(45,224,196,0.12);
+  --border-card: rgba(255,255,255,0.07);
+  --font: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+/* 헤더 */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11,22,20,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.25rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--teal);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.back-btn:active { background: var(--teal-glow); }
+
+.header-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+/* 본문 공통 */
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.doc-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.doc-date {
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  margin-bottom: 2.5rem;
+}
+
+.intro {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-left: 3px solid var(--teal);
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+
+/* 섹션 */
+.section { margin-bottom: 2.5rem; }
+
+.section-number {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.section p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 0.8rem;
+}
+.section p:last-child { margin-bottom: 0; }
+
+/* 목록 */
+ul, ol {
+  padding-left: 1.3rem;
+  margin: 0.4rem 0 0.8rem;
+}
+
+li {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 0.3rem;
+}
+
+/* 테이블 */
+.table-wrap {
+  overflow-x: auto;
+  margin: 0.8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border-card);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+thead tr { background: rgba(45,224,196,0.08); }
+
+th, td {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-card);
+  color: var(--text-muted);
+  vertical-align: top;
+  word-break: keep-all;
+}
+
+th {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+/* 공통 컴포넌트 */
+.highlight { color: var(--teal); font-weight: 500; }
+
+.contact-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 1.25rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.contact-box strong { color: var(--text); font-weight: 600; }
+
+.divider {
+  height: 1px;
+  background: var(--border-card);
+  margin: 2.5rem 0;
+}

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오픈소스 라이선스 — 아임온(I'm ON)</title>
+  <link rel="stylesheet" href="legal.css" />
+  <style>
+    /* 라이브러리 카드 */
+    .lib-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 0.9rem;
+      transition: border-color 0.15s;
+    }
+
+    .lib-card:active {
+      border-color: rgba(45,224,196,0.25);
+    }
+
+    .lib-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .lib-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      font-family: var(--mono);
+      letter-spacing: -0.01em;
+    }
+
+    .license-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-mit    { background: rgba(45,224,196,0.12); color: var(--teal); border: 1px solid rgba(45,224,196,0.25); }
+    .badge-apache { background: rgba(100,160,255,0.1); color: #7ab4ff;    border: 1px solid rgba(100,160,255,0.22); }
+    .badge-bsd    { background: rgba(200,160,255,0.1); color: #c8a8ff;    border: 1px solid rgba(200,160,255,0.22); }
+    .badge-isc    { background: rgba(255,200,100,0.1); color: #ffc864;    border: 1px solid rgba(255,200,100,0.22); }
+
+    .lib-version {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      font-family: var(--mono);
+      margin-bottom: 0.35rem;
+    }
+
+    .lib-desc {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* 라이선스 전문 섹션 */
+    .license-section {
+      margin-top: 3rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .license-text-block {
+      background: var(--bg-card2);
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .license-text-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .license-text-body {
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .group-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-faint);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 1.8rem 0 0.7rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-card);
+      margin: 2.5rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <button class="back-btn" onclick="history.back()" aria-label="뒤로가기">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <span class="header-title">오픈소스 라이선스</span>
+  </header>
+
+  <main class="content">
+
+    <div class="doc-title">오픈소스 라이선스</div>
+    <div class="doc-date">아임온(I'm ON) v1.0.0</div>
+
+    <div class="intro">
+      아임온(I'm ON)은 아래 오픈소스 소프트웨어를 사용합니다. 각 라이브러리의 저작권 및 라이선스 고지를 확인하실 수 있습니다.
+    </div>
+
+    <!-- MIT License 라이브러리 목록 -->
+    <div class="group-label">MIT License</div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">@react-native-async-storage/async-storage</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v2.2.0</div>
+      <div class="lib-desc">© Microsoft Corporation</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">@shopify/react-native-skia</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v2.2.12</div>
+      <div class="lib-desc">© Shopify Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">@supabase/supabase-js</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v2.97.0</div>
+      <div class="lib-desc">© Supabase</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">@tailwindcss/postcss</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v4.2.0</div>
+      <div class="lib-desc">© Tailwind Labs Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">clsx</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v2.1.1</div>
+      <div class="lib-desc">© Luke Edwards</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v54.0.33</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-asset</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v12.0.12</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-blur</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v15.0.8</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-clipboard</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v8.0.8</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-constants</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v18.0.13</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-contacts</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v15.0.11</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-dev-client</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v6.0.20</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-device</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v8.0.10</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-font</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v14.0.11</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-image</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v3.0.11</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-linear-gradient</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v15.0.8</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-linking</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v8.0.11</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-notifications</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v0.32.16</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-router</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v6.0.23</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-secure-store</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v15.0.8</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-splash-screen</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v31.0.13</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">expo-status-bar</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v3.0.9</div>
+      <div class="lib-desc">© 650 Industries, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">nativewind</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v5.0.0-preview.2</div>
+      <div class="lib-desc">© Mark Lawlor</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v19.1.0</div>
+      <div class="lib-desc">© Meta Platforms, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-dom</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v19.1.0</div>
+      <div class="lib-desc">© Meta Platforms, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v0.81.5</div>
+      <div class="lib-desc">© Meta Platforms, Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-calendars</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v1.1314.0</div>
+      <div class="lib-desc">© Wix.com</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-css</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v3.0.3</div>
+      <div class="lib-desc">© Mark Lawlor</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-gesture-handler</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v2.28.0</div>
+      <div class="lib-desc">© Software Mansion</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-purchases</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v9.15.2</div>
+      <div class="lib-desc">© RevenueCat Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-reanimated</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v4.1.6</div>
+      <div class="lib-desc">© Software Mansion</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-safe-area-context</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v5.6.2</div>
+      <div class="lib-desc">© Th3rdwave</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-screens</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v4.16.0</div>
+      <div class="lib-desc">© Software Mansion</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-svg</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v15.12.1</div>
+      <div class="lib-desc">© Horcrux</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-url-polyfill</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v2.0.0</div>
+      <div class="lib-desc">© Charpeni</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-web</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v0.21.2</div>
+      <div class="lib-desc">© Nicolas Gallagher</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">react-native-skia</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v2.2.12</div>
+      <div class="lib-desc">© Shopify Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">tailwind-merge</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v3.5.0</div>
+      <div class="lib-desc">© Dany Castillo</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">tailwindcss</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v4.2.0</div>
+      <div class="lib-desc">© Tailwind Labs Inc.</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">victory-native</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v41.20.2</div>
+      <div class="lib-desc">© Formidable Labs</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">@babel/core</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v7.29.0</div>
+      <div class="lib-desc">© Sebastian McKenzie</div>
+    </div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">@types/react</span>
+        <span class="license-badge badge-mit">MIT</span>
+      </div>
+      <div class="lib-version">v19.1.17</div>
+      <div class="lib-desc">© DefinitelyTyped contributors</div>
+    </div>
+
+    <!-- Apache 2.0 라이브러리 목록 -->
+    <div class="group-label" style="margin-top:2rem;">Apache License 2.0</div>
+
+    <div class="lib-card">
+      <div class="lib-header">
+        <span class="lib-name">typescript</span>
+        <span class="license-badge badge-apache">Apache 2.0</span>
+      </div>
+      <div class="lib-version">v5.9.3</div>
+      <div class="lib-desc">© Microsoft Corporation</div>
+    </div>
+
+    <!-- 라이선스 전문 -->
+    <div class="license-section">
+      <div class="section-label">License Texts</div>
+      <div class="section-title">라이선스 전문</div>
+
+      <!-- MIT -->
+      <div class="license-text-block">
+        <div class="license-text-title">MIT License</div>
+        <div class="license-text-body">Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</div>
+      </div>
+
+      <!-- Apache 2.0 -->
+      <div class="license-text-block">
+        <div class="license-text-title">Apache License, Version 2.0</div>
+        <div class="license-text-body">Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+    <p style="font-size:0.8rem; color:var(--text-faint); text-align:center;">© 2025 SoFunny. All rights reserved.</p>
+
+  </main>
+
+</body>
+</html>
